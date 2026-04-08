@@ -39,7 +39,9 @@ export function AppProvider({ children }) {
     type: 'all',
     category: 'all',
     sortBy: 'date',
-    sortOrder: 'desc'
+    sortOrder: 'desc',
+    dateFrom: '',
+    dateTo: ''
   });
 
   // persist stuff to localStorage
@@ -107,6 +109,14 @@ export function AppProvider({ children }) {
     // category filter
     if (filters.category !== 'all') {
       result = result.filter(t => t.category === filters.category);
+    }
+
+    // date range filter
+    if (filters.dateFrom) {
+      result = result.filter(t => t.date >= filters.dateFrom);
+    }
+    if (filters.dateTo) {
+      result = result.filter(t => t.date <= filters.dateTo);
     }
 
     // sorting

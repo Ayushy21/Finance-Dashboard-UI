@@ -46,10 +46,10 @@ function TransactionList() {
   };
 
   // export to CSV
-  const handleExport = () => {
+  const handleExportCSV = () => {
     const headers = ['Date', 'Description', 'Category', 'Type', 'Amount'];
     const csvData = filteredTransactions.map(t =>
-      [t.date, t.description, t.category, t.type, t.amount].join(',')
+      [t.date, `"${t.description}"`, t.category, t.type, t.amount].join(',')
     );
     const csv = [headers.join(','), ...csvData].join('\n');
     const blob = new Blob([csv], { type: 'text/csv' });
@@ -60,6 +60,20 @@ function TransactionList() {
     a.click();
     URL.revokeObjectURL(url);
   };
+
+  // export to JSON
+  const handleExportJSON = () => {
+    const json = JSON.stringify(filteredTransactions, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'transactions.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const [showExportMenu, setShowExportMenu] = useState(false);
 
   const handleEdit = (transaction) => {
     setEditingTransaction(transaction);
@@ -123,10 +137,40 @@ function TransactionList() {
           </select>
         </div>
 
+        <div className="filter-group date-range">
+          <input
+            type="date"
+            title="From date"
+            value={filters.dateFrom}
+            onChange={(e) => {
+              setFilters(prev => ({ ...prev, dateFrom: e.target.value }));
+              setCurrentPage(1);
+            }}
+          />
+          <span className="date-sep">–</span>
+          <input
+            type="date"
+            title="To date"
+            value={filters.dateTo}
+            onChange={(e) => {
+              setFilters(prev => ({ ...prev, dateTo: e.target.value }));
+              setCurrentPage(1);
+            }}
+          />
+        </div>
+
         <div className="filter-actions">
-          <button className="btn-export" onClick={handleExport} title="Export CSV">
-            <FiDownload /> <span>Export</span>
-          </button>
+          <div className="export-wrapper">
+            <button className="btn-export" onClick={() => setShowExportMenu(v => !v)} title="Export">
+              <FiDownload /> <span>Export</span>
+            </button>
+            {showExportMenu && (
+              <div className="export-menu">
+                <button onClick={() => { handleExportCSV(); setShowExportMenu(false); }}>CSV</button>
+                <button onClick={() => { handleExportJSON(); setShowExportMenu(false); }}>JSON</button>
+              </div>
+            )}
+          </div>
           {role === 'admin' && (
             <button
               className="btn-add"

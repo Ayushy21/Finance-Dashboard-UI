@@ -12,6 +12,7 @@ import {
 } from 'chart.js';
 import { FiTrendingUp, FiTrendingDown, FiAlertCircle, FiAward } from 'react-icons/fi';
 import './Insights.css';
+import './Charts.css';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 

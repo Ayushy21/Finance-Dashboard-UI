@@ -70,6 +70,70 @@
   gap: 0.5rem;
 }
 
+/* date range filter */
+.filter-group.date-range {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.filter-group.date-range input {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  cursor: pointer;
+  outline: none;
+  min-width: 130px;
+}
+
+.filter-group.date-range input:focus {
+  border-color: var(--accent);
+}
+
+.date-sep {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  user-select: none;
+}
+
+/* export dropdown */
+.export-wrapper {
+  position: relative;
+}
+
+.export-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  overflow: hidden;
+  z-index: 50;
+  min-width: 100px;
+}
+
+.export-menu button {
+  display: block;
+  width: 100%;
+  padding: 0.55rem 1rem;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.export-menu button:hover {
+  background: var(--hover-bg);
+}
+
 .btn-export {
   display: flex;
   align-items: center;
@@ -400,6 +464,15 @@
   .btn-export, .btn-add {
     flex: 1;
     justify-content: center;
+  }
+
+  .filter-group.date-range {
+    width: 100%;
+  }
+
+  .filter-group.date-range input {
+    flex: 1;
+    min-width: 0;
   }
 
   .table-wrapper {

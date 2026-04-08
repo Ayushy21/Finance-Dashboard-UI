@@ -18,9 +18,10 @@ A clean, interactive finance dashboard built with React to help users track and 
   - Full transaction listing with date, amount, category, type
   - Search across descriptions, categories, and amounts
   - Filter by type (income/expense) and category
+  - **Date range filter** (from/to date picker)
   - Sort by date, amount, or category (ascending/descending)
   - Pagination (10 per page)
-  - CSV export functionality
+  - CSV and **JSON export** functionality
 
 - **Role-Based UI**
   - Toggle between Admin and Viewer roles via the navbar
@@ -46,7 +47,8 @@ A clean, interactive finance dashboard built with React to help users track and 
 - **Dark Mode** - Toggle between light and dark themes
 - **Data Persistence** - localStorage for transactions, role, and theme preference
 - **Animations** - Page transitions, hover effects, modal animations
-- **CSV Export** - Download filtered transactions as CSV
+- **CSV + JSON Export** - Download filtered transactions as CSV or JSON
+- **Date Range Filter** - Filter transactions by a from/to date range
 - **Responsive Design** - Works on desktop, tablet, and mobile
 - **Empty State Handling** - Graceful UI when no data matches filters
 
@@ -151,10 +153,9 @@ Tested on:
 
 ## What I'd Improve With More Time
 
-- Add date range picker for filtering transactions
 - Implement mock API with loading states and skeleton screens
 - Add budget setting feature with progress tracking
-- More chart types (bar chart for daily spending, area charts)
+- More chart types (area charts, daily spending heatmap)
 - Proper unit tests with Vitest
 - Better accessibility (keyboard navigation, ARIA labels)
 - URL-based routing with React Router
