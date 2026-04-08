@@ -2,7 +2,7 @@
 
 A clean, interactive finance dashboard built with React to help users track and understand their financial activity. Built as part of a frontend development assignment.
 
-![Dashboard Preview](./screenshots/dashboard.png)
+
 
 ## Features
 
